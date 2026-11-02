@@ -1,5 +1,17 @@
-import discord
-import aiohttp
+import os
+import subprocess
+import sys
+
+# Installe automatiquement discord.py et aiohttp si manquants
+try:
+    import discord
+    import aiohttp
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "discord.py", "aiohttp", "--target=.", "--no-cache-dir"])
+    # On réessaye l'importation après l'installation automatique
+    import discord
+    import aiohttp
+
 import io
 from discord.ext import commands
 
